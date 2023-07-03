@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Danh mục sản phẩm</h1>
+    <div class="product-container">
+        <?php
+        include 'products.php';
+        
+        $query = "SELECT * FROM SanPham";
+        $result = $conn->query($query);
+        
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="product">';
+            echo '<img src="' . $row['img'] . '">';
+            echo '<h2>' . $row['name'] . '</h2>';
+            echo '<p>price: ' . $row['price'] . '</p>';
+            echo '<button class="add-to-cart">Add to Cart</button>';
+            echo '<button class="buy-now">Buy Now</button>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+</body>
+</html>
